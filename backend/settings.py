@@ -136,3 +136,22 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
 CORS_ALLOW_ALL_ORIGINS=True
+
+
+# AWS CONFIGURATIONS
+AWS_ACCESS_KEY_ID = "AKIAQAVA37INQ33EWBN3"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_DEFAULT_ACL = None
+AWS_STORAGE_BUCKET_NAME = "posbackend"
+AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    "CacheControl": "max-age=86400",
+}
+AWS_LOCATION = "static"
+
+
+# STATICFILES_STORAGE = os.path.join(BASE_DIR, 'static')
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+DEFAULT_FROM_EMAIL = "OptimaInvestment <support@paynexinvestment.com>"
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
